@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>自作かな配列 練習サイト</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Prefix Shift Kana Trainer</p>
+          <h1>自作かな配列 練習サイト</h1>
+        </div>
+        <div class="total-stats" aria-label="累計統計">
+          <span>累計 <strong id="totalSessions">0</strong> 回</span>
+          <span>打鍵 <strong id="totalKeystrokes">0</strong></span>
+          <span>ミス <strong id="totalMisses">0</strong></span>
+        </div>
+      </header>
+
+      <section class="toolbar" aria-label="練習操作">
+        <button type="button" id="prevLessonButton" class="secondary">前へ</button>
+        <button type="button" id="nextLessonButton">次の練習文</button>
+        <button type="button" id="restartButton" class="secondary">リスタート</button>
+        <div class="lesson-name" id="lessonName">Lesson 1</div>
+      </section>
+
+      <section id="practiceArea" class="practice-area" tabindex="0" aria-label="練習エリア">
+        <div id="warningBox" class="warning" hidden></div>
+
+        <div class="target-block">
+          <div class="section-label">練習対象文</div>
+          <div id="targetText" class="target-text" aria-live="polite"></div>
+        </div>
+
+        <div class="typed-block">
+          <div class="section-label">入力済みテキスト</div>
+          <div id="typedText" class="typed-text" aria-live="polite"></div>
+        </div>
+
+        <div class="status-grid">
+          <div class="status-item">
+            <span>次のキー</span>
+            <strong id="nextKey">-</strong>
+          </div>
+          <div class="status-item">
+            <span>打鍵列</span>
+            <strong id="nextStroke">-</strong>
+          </div>
+          <div class="status-item">
+            <span>前置シフト</span>
+            <strong id="prefixState">なし</strong>
+          </div>
+          <div class="status-item">
+            <span>ミス</span>
+            <strong id="missCount">0</strong>
+          </div>
+        </div>
+
+        <div class="progress-wrap" aria-label="進捗">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <div id="lastMiss" class="last-miss" aria-live="polite">ミスなし</div>
+      </section>
+
+      <section class="keyboard-section" aria-label="仮想キーボード">
+        <div class="section-head">
+          <h2>仮想キーボード</h2>
+          <div class="face-switch" role="tablist" aria-label="キーボード面">
+            <button type="button" data-face="" class="is-active">無</button>
+            <button type="button" data-face="d">D</button>
+            <button type="button" data-face="k">K</button>
+          </div>
+        </div>
+        <div id="keyboard" class="keyboard"></div>
+      </section>
+
+      <section class="custom-section" aria-label="任意文章">
+        <div class="section-head">
+          <h2>任意の練習文</h2>
+          <button type="button" id="customStartButton">この文章で開始</button>
+        </div>
+        <textarea id="customText" rows="4" spellcheck="false">じぶんのかなはいれつをれんしゅうします。</textarea>
+      </section>
+
+      <section class="result-section" aria-label="結果">
+        <h2>結果</h2>
+        <div class="live-metrics">
+          <div><span>経過時間</span><strong id="elapsedTime">0.0 秒</strong></div>
+          <div><span>正確率</span><strong id="accuracy">100.0%</strong></div>
+          <div><span>打鍵数</span><strong id="keystrokeCount">0</strong></div>
+          <div><span>仮名数</span><strong id="kanaCount">0</strong></div>
+          <div><span>打鍵/分</span><strong id="keysPerMinute">0.0</strong></div>
+          <div><span>仮名/分</span><strong id="kanaPerMinute">0.0</strong></div>
+        </div>
+        <div id="resultDetails" class="result-details">練習終了後に表示します。</div>
+      </section>
+    </main>
+  </body>
+</html>
