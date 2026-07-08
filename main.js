@@ -4,61 +4,61 @@ const LAYOUT_PATH = "layouts/best_layout_char_to_position.tsv";
 
 const DEFAULT_LAYOUT_TSV = `文字	配置位置
 ゛	l
-゜	kq
-あ	c
+゜	kz
+あ	kf
 い	;
 う	m
 え	dk
-お	kf
+お	ks
 ぁ	kt
-ぃ	d,
+ぃ	d.
 ぅ	dy
-ぇ	d.
-ぉ	kw
+ぇ	kq
+ぉ	d,
 か	s
-き	a
-く	h
-け	x
-こ	w
+き	h
+く	p
+け	ds
+こ	v
 さ	t
 し	i
-す	v
-せ	kd
-そ	kg
+す	c
+せ	x
+そ	ka
 た	f
-ち	dh
+ち	dm
 つ	kj
 て	g
-と	e
+と	a
 っ	u
 な	r
-に	p
-ぬ	du
+に	w
+ぬ	kw
 ね	kc
 の	o
-は	q
-ひ	dm
-ふ	ds
+は	e
+ひ	dj
+ふ	kg
 へ	kx
 ほ	kr
-ま	dl
-み	do
-む	dn
-め	ka
-も	z
-や	dp
-ゆ	kv
+ま	z
+み	dp
+む	du
+め	dn
+も	kd
+や	dh
+ゆ	ke
 よ	kb
 ゃ	di
 ゅ	df
 ょ	b
-ら	ks
+ら	q
 り	kl
 る	n
 れ	y
-ろ	ke
-わ	kz
-を	dj
+ろ	kv
+わ	do
+を	dl
 ん	j
 ー	d;
 、	,
@@ -498,7 +498,8 @@ function recordMiss(token, expectedStroke, reason = "") {
     state.stats.prefixMisses += 1;
   }
 
-  if (unit && (unit.char === "゛" || unit.char === "゜" || actualStroke === "l" || actualStroke === "kq")) {
+  const actualChar = strokeToChar.get(actualStroke);
+  if (unit && (unit.char === "゛" || unit.char === "゜" || actualChar === "゛" || actualChar === "゜")) {
     state.stats.modifierMisses += 1;
   }
 
